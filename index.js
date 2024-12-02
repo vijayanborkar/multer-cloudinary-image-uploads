@@ -1,13 +1,13 @@
-import express from "express";
-import fs from "fs";
-import { fileRouter } from "./src/router/fileRouter.js";
-import { fileURLToPath } from "url";
-import path from "path";
+const express = require("express");
+const fs = require("fs");
+const { fileRouter } = require("./src/router/fileRouter.js");
+const { fileURLToPath } = require("url");
+const path = require("path");
 
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {
