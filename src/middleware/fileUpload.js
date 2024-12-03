@@ -2,15 +2,10 @@ const path = require("path");
 const multer = require("multer");
 const { fileTypeValidator } = require("../utils/fileTypeValidator.js");
 const { UNEXPECTED_FILE_TYPE } = require("../constants/file.js");
-const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = "uploads";
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir);
-    }
-    cb(null, uploadDir);
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -34,6 +29,4 @@ const upload = multer({
   },
 }).array("file", 1);
 
-module.exports = { multer };
-module.exports = { upload };
-module.exports = { storage };
+module.exports = upload;
