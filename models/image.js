@@ -1,19 +1,21 @@
-const { Model, Sequelize, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 
-module.exports = (Sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
+  class Image extends Model {}
+
   Image.init(
     {
       url: DataTypes.STRING,
       secure_url: DataTypes.STRING,
       tags: DataTypes.STRING,
-      uploadAt: DataTypes.DATE,
+      uploadedAt: DataTypes.DATE,
       userId: DataTypes.INTEGER,
       isDeleted: DataTypes.BOOLEAN,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
     {
-      Sequelize,
+      sequelize,
       modelName: "Image",
     }
   );
