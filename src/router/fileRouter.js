@@ -1,11 +1,11 @@
 const multer = require("multer");
 const { Router } = require("express");
-const upload = require("../middleware/fileUpload.js");
+const { upload } = require("../middleware/fileUpload.js");
 const { UNEXPECTED_FILE_TYPE } = require("../constants/file.js");
 const { fileController } = require("../controller/fileController.js");
 const { imageResize } = require("../middleware/imageResize.js");
 const { isFilePresent } = require("../middleware/validators/isFilePresent.js");
-const authenticateJWT = require("../middleware/authentication.js");
+const { authenticateJWT } = require("../middleware/authentication.js");
 
 const fileRouter = Router();
 
@@ -24,9 +24,9 @@ fileRouter.post(
       next();
     });
   },
+  isFilePresent,
   fileController,
-  imageResize,
-  isFilePresent
+  imageResize
 );
 
 module.exports = { fileRouter };

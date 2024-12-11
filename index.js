@@ -1,7 +1,6 @@
 const express = require("express");
 const fs = require("fs");
 const { fileRouter } = require("./src/router/fileRouter.js");
-const { fileURLToPath } = require("url");
 const path = require("path");
 const cors = require("cors");
 
@@ -13,7 +12,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 app.use(cors());
-app.use("/uploads", express.static(uploadDir));
+app.use("/src/uploads", express.static("/src/uploads"));
 
 app.use("/files", fileRouter);
 

@@ -1,4 +1,3 @@
-const upload = require("../middleware/fileUpload");
 const { cloudinaryUpload } = require("../service/fileService.js");
 
 const fileController = async (req, res) => {

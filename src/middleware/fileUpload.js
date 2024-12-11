@@ -29,4 +29,4 @@ const upload = multer({
   },
 }).array("file", 1);
 
-module.exports = upload;
+module.exports = { upload };
