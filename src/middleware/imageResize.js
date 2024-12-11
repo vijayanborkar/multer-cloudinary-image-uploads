@@ -4,7 +4,7 @@ const path = require("path");
 
 const imageResize = async (req, res, next) => {
   try {
-    const originalFilePath = req.file[0].path;
+    const originalFilePath = req.files[0].path;
     const parsedPath = path.parse(originalFilePath);
     const outputFilePath = path.join(
       parsedPath.dir,
@@ -27,7 +27,7 @@ const imageResize = async (req, res, next) => {
     req.originalFilePath = originalFilePath;
     next();
   } catch (error) {
-    return res.status(500).json({ error: { desciption: error.message } });
+    return res.status(500).json({ error: { description: error.message } });
   }
 };
 

@@ -10,7 +10,7 @@ const cloudinaryConfig = () => {
 };
 
 const generateSignature = (paramsToSign) => {
-  const { api_secret } = cloudinaryConfig;
+  const api_secret = process.env.CLOUDINARY_API_SECRET;
   const sortedParams = Object.keys(paramsToSign)
     .sort()
     .map((key) => `${key}=${paramsToSign[key]}`)

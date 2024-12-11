@@ -2,10 +2,10 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 function generateToken(payload, expiresIn = "1h") {
-  if (!process.env.JWT_SECRET) {
-    throw new Error("JWT_SECRET is not defined in the environment variables.");
+  if (!process.env.JWT_TOKEN) {
+    throw new Error("JWT_TOKEN is not defined in the environment variables.");
   }
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+  return jwt.sign(payload, process.env.JWT_TOKEN, { expiresIn });
 }
 
 try {
