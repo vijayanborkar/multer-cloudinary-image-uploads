@@ -10,7 +10,7 @@ const cloudinaryConfig = () => {
 };
 
 const generateSignature = (paramsToSign) => {
-  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+  const { api_secret } = cloudinaryConfig;
   const sortedParams = Object.keys(paramsToSign)
     .sort()
     .map((key) => `${key}=${paramsToSign[key]}`)
@@ -18,7 +18,7 @@ const generateSignature = (paramsToSign) => {
 
   const signature = crypto
     .createHash("sha1")
-    .update(sortedParams + apiSecret)
+    .update(sortedParams + api_secret)
     .digest("hex");
 
   return signature;
@@ -28,10 +28,11 @@ const uploadToCloudinary = async (filePath) => {
   try {
     cloudinaryConfig();
     const timestamp = Math.round(new Date().getTime() / 1000);
-    const paramsToSign = { timestamp };
+    const paramsToSign = {
+      timestamp,
+    };
 
     const signature = generateSignature(paramsToSign);
-
     const result = await cloudinary.uploader.upload(filePath, {
       ...paramsToSign,
       signature,
@@ -40,8 +41,7 @@ const uploadToCloudinary = async (filePath) => {
 
     return result;
   } catch (error) {
-    console.error("Error uploading to Cloudinary:", error);
-    throw error;
+    console.log(error);
   }
 };
 

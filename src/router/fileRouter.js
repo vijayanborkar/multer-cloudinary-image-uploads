@@ -24,9 +24,9 @@ fileRouter.post(
       next();
     });
   },
-  isFilePresent,
   fileController,
-  imageResize
+  imageResize,
+  isFilePresent
 );
 
 module.exports = { fileRouter };
